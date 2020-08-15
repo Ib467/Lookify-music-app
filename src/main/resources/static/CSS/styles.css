@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+body{
+    width: 34%;
+   margin-left: auto;
+    max-width: 50%;
+   
+}
+
+h1{
+color: black;
+font-size: 2.5em;
+}
+
+.dashboard{
+ 
+}
