@@ -21,6 +21,12 @@ margin-left: 20x
 
 h1{
 color: black;}
+th, td, tr{
+	padding: 10px;
+}
+.show-inline * {
+	display: inline-block;
+}
 
 </style>
 </head>
@@ -28,7 +34,7 @@ color: black;}
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
  
- 
+ <div class="show-inline">
  <h1><a href="/songs/new">Add New Song</a></h1>
   <h1><a href="/songs/topten">Top Ten</a></h1>
 	<div> 
@@ -42,23 +48,27 @@ color: black;}
 			
 	</div>
  
- 
- <div><h1>All Songs</h1></div>
+ </div>
+ <h1>All Songs</h1>
 
 <table class="">
     <thead>
         <tr>
+        	<th>---</th>
             <th>Name</th>
             <th>Rating</th>
             <th>Actions</th>
+            <th>Stars</th>
         </tr>
     </thead>
     <tbody>
         <c:forEach items="${songs}" var="song">
         <tr>
+        	<td><a href="/edit-songs/${song.id}">Edit</a></td>
             <td><a href="/songs/${song.id}"> <c:out value="${song.title}"/>  </a></td>
             <td><c:out value="${song.rating}"/></td>
            <td><a href="/songs/${song.id}/delete">Delete </a></td>
+           <td><a href="/">  <c:out value="${song.star}"/></a></td>
            
                             
         </tr>

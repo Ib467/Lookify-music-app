@@ -28,13 +28,33 @@ public class Song {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Size(min=5, max=20, message="Name must be at lease 5-20 characters long")
 	private String name;
+	
 	@Size(min=5, max=20, message="Name must be at lease 5-20 characters long")
 	private String title;
+	
 	@Min(1)
 	@Max(10)
 	private Integer rating;
+	
+	@Min(1)
+	@Max(10)
+	private Integer star;
+	
+	public Song(Long id, @Size(min = 5, max = 20, message = "Name must be at lease 5-20 characters long") String name,
+			@Size(min = 5, max = 20, message = "Name must be at lease 5-20 characters long") String title,
+			@Min(1) @Max(10) Integer rating, @Min(1) @Max(10) Integer star, Date createdAt, Date updatedAt) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.title = title;
+		this.rating = rating;
+		this.star = star;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
 	
 	
 	//updated and created dates
@@ -47,21 +67,21 @@ public class Song {
     
     //constructor 
 	
-    public Song() {
+    public Song() {}
 
-	}
-    
-    public Song(String title, String name, Integer rating){
-		this.name = name;
-		this.title = title;
-		this.rating = rating;
-	}
-	
     
     
     // -----------getters & setters --------------------
 	
 		
+	public Integer getStar() {
+		return star;
+	}
+
+	public void setStar(Integer star) {
+		this.star = star;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -52,6 +52,7 @@ public class MainController {
     }
  
     
+  //----------creating a song---------------   
 //    @PostMapping("/songs/newsong")
     @RequestMapping(value="/songs/new", method=RequestMethod.POST)
     public String createSong(@Valid @ModelAttribute("song")Song song, BindingResult result, Model model) {
@@ -65,7 +66,7 @@ public class MainController {
     	return "redirect:/dashboard";
     }
     }
-//----------creating a song---------------
+
 
     
     	
@@ -84,14 +85,13 @@ public class MainController {
         
         @RequestMapping("/songs/topten")
         public String topTen(Model model, @ModelAttribute("song") Song song) {
-            List<Song> songs =songService.getAllSongs();
+            List<Song> songs = songService.findTop10ByOrderByRatingDesc();
             model.addAttribute("songs", songs);
             return "topten.jsp";
         }
         
-     
-        
-        
+    
+       
       //view method
         
         @RequestMapping("/songs/{id}")
@@ -100,15 +100,40 @@ public class MainController {
             model.addAttribute("song", oneSong);
             return "viewsong.jsp";
         }
+        
+        
+        
+         
+      //to edit page 
+        
+        @RequestMapping("/edit-songs/{id}")
+        public String editPage(@PathVariable("id")Long id, Model model) {
+            Song oneSong = songService.findById(id);
+            model.addAttribute("song", oneSong);
+            return "editSong.jsp";
+            
+        }
+        
+      //to edit Song 
+        
+        @RequestMapping("/update-songs/{id}")
+        public String editSong(@PathVariable("id")Long id, String title, String name, Integer rating, Integer star) {
+        	songService.updateSong(id, title, name, rating, star);
+        	return "redirect:/dashboard";
+            
+        }
+ 
 
         
-        //----------Search-------------------       
+       //-----------check with Kyle -------------------
+      //----------Search-------------------       
         @GetMapping("/search")
-    	public String search(@ModelAttribute("song")Song song, Model model) {
-    		List<Song> songs = songService.search(song.getName());
+        public String index(@RequestParam(value="name") String searchQuery, Model model) {
+    		List<Song> songs = songService.search(searchQuery);
     		model.addAttribute("songs", songs);
     		return "search.jsp";
     	}
+        
         
         
 

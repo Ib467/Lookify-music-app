@@ -1,14 +1,15 @@
 package com.indika.Lookify.services;
 
+
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.indika.Lookify.models.Song;
 import com.indika.Lookify.repositories.SongRepository;
+//import com.indika.productsandcat.models.Category;
+//import com.indika.productsandcat.models.Product;
 
 @Service
 public class SongService {
@@ -24,14 +25,19 @@ public class SongService {
         return this.songRepo.findAll();
     }
     
+    
+    //method of get all Top ten
+    
+    public List<Song>findTop10ByOrderByRatingDesc(){
+        return this.songRepo.findTop10ByOrderByRatingDesc();
+    }
+    
 
     //create a Song 
     
     public Song createSong(Song l) {
         return this.songRepo.save(l);
     }
-    
-   
   
 	public List<Song> search(String name) {
 		return songRepo.findByNameContainingIgnoreCase(name);
@@ -46,14 +52,13 @@ public class SongService {
     }
 
     //update a song 
-    public Song updateSong(Long id, String title, String name, int rating) {
+    public Song updateSong(Long id, String title, String name, Integer rating, Integer star) {
     	Song song=songRepo.findById(id).get();
     	song.setTitle(title);
     	song.setName(name);
     	song.setRating(rating);
-    	return songRepo.save(song);
- 
-    
+    	song.setStar(rating);
+    	return songRepo.save(song);   
      }
     
     

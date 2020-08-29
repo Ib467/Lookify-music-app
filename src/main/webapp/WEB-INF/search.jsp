@@ -10,5 +10,13 @@
 
 <h1> Your search results...</h1>
 
+
+<h3>Title: ${songs.title }</h3>
+<h3>Artist: ${songs.name }</h3>
+<h3>Rating: ${songs.rating }</h3>
+<h3>Star: ${songs.star }</h3>
+
+
+
 </body>
 </html>

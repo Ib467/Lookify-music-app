@@ -39,8 +39,9 @@ public class SongsApi {
 			@PostMapping("/api/songs")
 		    public Song create(@RequestParam(value="name") String name, 
 		    					@RequestParam(value="title") String title, 
-		    					@RequestParam(value="rating") Integer rating) {
-		        Song newSong = new Song(name, title, rating);
+		    					@RequestParam(value="rating") Integer rating,
+		    					@RequestParam(value="star") String star) {
+		        Song newSong = new Song(name, title, rating, star);
 		        return songService.createSong(newSong);
 		    }
 			

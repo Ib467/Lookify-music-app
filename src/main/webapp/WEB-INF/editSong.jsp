@@ -27,14 +27,14 @@ font-size: 2.5em;
 </head>
 <body>
 
-<h1>Add a New Song</h1>
+<h1>Edit a New Song</h1>
 
 
-	<form:form action="/songs/new" method="POST" modelAttribute="song">
+	<form:form action="/update-songs/${id}" method="POST" modelAttribute="song">
 	    <p>
 	        <form:label path="title">Title</form:label>
 	        <form:errors path="title"/>
-	        <form:input class="input" path="title"/>
+	        <form:input class="input" value="${song.title}" path="title"/>
 	    </p>
 	    
 	    <p>
